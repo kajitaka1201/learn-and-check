@@ -1,0 +1,68 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  width: 100px;
+}
+
+.setting {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.setting h1 {
+  text-align: center;
+}
+
+.setting div {
+  display: flex;
+
+  justify-content: center;
+}
+
+.setting p {
+  display: inline-block;
+}
+
+.problem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.problem p {
+  display: inline-block;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.content p {
+  display: inline-block;
+}
+
+.field {
+  border: 1px solid black;
+
+}

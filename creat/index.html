@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Learn and Check -解答欄でテスト形式で確認、覚えたらチェックする効率的なweb単語帳-</title>
+  <link href="./tailwind.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="/favicon.png">
+</head>
+
+<body>
+  <header class="flex items-center p-5">
+    <a class="logo" href="/" class="mr-5"><img src="/logo.png" alt="ロゴ ホームへ" height="50px" width="100px" /></a>
+    <a href="/creat/">作成</a>
+  </header>
+  <main class="flex flex-col items-center">
+    <div class="setting">
+      <h1>単語帳設定</h1>
+      <div>
+        <label class="conditions">チェックボックス機能を使用する<input class="chechbox" type="checkbox"></label>
+      </div>
+      <div>
+        <label class="conditions">解答欄機能を使用する<input class="chechbox" type="checkbox"></label>
+      </div>
+    </div>
+    <div class="problem">
+      <div class="content">
+        <label class="field">問題<input type="text"></label>
+        <label class="field">解答<input type="text"></label>
+        <label>チェック<input type="checkbox"></label>
+      </div>
+      <div class="creatnew">
+        <p>カードを追加</p>
+      </div>
+    </div>
+    <div class="start">
+      <p>単語帳開始</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
