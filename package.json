@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "dev": "tailwindcss -i ./style.css -o ./tailwind.css --watch"
+    "dev": "tailwindcss -i ./style.css -o ./tailwind.css --watch | http-server"
   },
   "dependencies": {
+    "http-server": "^14.1.1",
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
