@@ -17,25 +17,29 @@
     <a href="../" class="mr-5" title="ホームへ"><img src="../logo.png" alt="ロゴ" height="50px" width="100px" /></a>
     <a href="./" title="単語帳作成">
       <svg viewBox="0 0 256 256" width="40px" height="40px">
-        <path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-40-64a8,8,0,0,1-8,8H136v16a8,8,0,0,1-16,0V160H104a8,8,0,0,1,0-16h16V128a8,8,0,0,1,16,0v16h16A8,8,0,0,1,160,152Z" />
+        <path
+          d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-40-64a8,8,0,0,1-8,8H136v16a8,8,0,0,1-16,0V160H104a8,8,0,0,1,0-16h16V128a8,8,0,0,1,16,0v16h16A8,8,0,0,1,160,152Z" />
       </svg>
     </a>
   </header>
   <main class="flex flex-wrap flex-col items-center text-center m-5">
-    <div class="w-full border-black border rounded-2xl" >
+    <div class="w-full border-black border rounded-2xl">
       <h1>単語帳設定</h1>
-      <div class="m-4">
-        <label>チェックボックス機能を使用する<input type="checkbox" /></label>
+      <div class="my-4 mx-20">
+        <label class="flex justify-between">チェックボックス機能を使用する<input type="checkbox" class="scale-125" /></label>
       </div>
-      <div class="m-4">
-        <label>解答欄機能を使用する<input type="checkbox" /></label>
+      <div class="my-4 mx-20">
+        <label class="flex justify-between">解答欄機能を使用する<input type="checkbox" class="scale-125" /></label>
       </div>
     </div>
     <div class="w-full">
-      <div class="flex flex-wrap justify-center">
-        <label class="m-2 block">問題<input type="text" /></label>
-        <label class="m-2 block">解答<input type="text" /></label>
-        <label class="m-2 block">チェック<input type="checkbox" /></label>
+      <div class="flex flex-wrap justify-between my-4 mx-20">
+        <label class="flex-1 flex" for="text_problem">問題</label>
+        <input type="text" id="text_problem" />
+        <label class="flex-1 flex" for="text_answer">解答</label>
+        <input type="text" id="text_answer" />
+        <label class="flex-none" for="text_check">チェック</label>
+        <input type="checkbox" class="scale-125" id="text_check" />
       </div>
       <div>
         <p>カードを追加</p>
