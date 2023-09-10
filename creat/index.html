@@ -21,14 +21,14 @@
     <main class="flex flex-wrap flex-col items-center text-center m-5">
       <div class="w-full border-blue-600 border-2 rounded-2xl">
         <h1>単語帳設定</h1>
-        <div class="px-20">
-          <div class="my-4 min-w-[200px]">
+        <div class="px-20 flex flex-col items-stretch">
+          <div class="my-4">
             <label class="flex justify-between hover:bg-gray-200">
               チェックボックス機能を使用する
               <input type="checkbox" class="scale-125" />
             </label>
           </div>
-          <div class="my-4 min-w-[200px]">
+          <div class="my-4">
             <label class="flex justify-between hover:bg-gray-200">
               解答欄機能を使用する
               <input type="checkbox" class="scale-125" />
@@ -37,68 +37,90 @@
         </div>
       </div>
       <div class="w-full">
+        <div>
+          <h1>入力欄</h1>
+          <p>以下の入力欄に入力するか、規定のファイル形式のファイルを読み込んで下さい。</p>
+          <input type="file" id="input-file" accept="" class="hidden" />
+          <div class="flex justify-center items-center">
+            <button id="bt-file" class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400 w-40">ファイルを読み込む</button>
+            <div id="output" class="output"></div>
+          </div>
+        </div>
         <div class="flex flex-wrap justify-center items-center my-4 mx-20">
+          <label class="mx-2.5 w-full flex justify-center">
+            <input type="text" maxlength="100" placeholder="タイトルを入力して下さい" class="border-[#767676] border border-solid rounded-[5px] flex-1" />
+          </label>
           <ul class="w-full list-decimal min-w-[12.5rem]">
             <li>
-              <div class="flex itemscenter justify-center flex-wrap w-full my-5">
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
+              <div class="flex items-center justify-center flex-wrap w-full my-5">
+                <div class="flex flex-col flex-1">
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                </div>
                 <label class="flex-none mx-2.5">
                   <input type="checkbox" class="scale-125" />
                 </label>
               </div>
             </li>
             <li>
-              <div class="flex itemscenter justify-center flex-wrap w-full my-5">
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
+              <div class="flex items-center justify-center flex-wrap w-full my-5">
+                <div class="flex flex-col flex-1">
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                </div>
                 <label class="flex-none mx-2.5">
                   <input type="checkbox" class="scale-125" />
                 </label>
               </div>
             </li>
             <li>
-              <div class="flex itemscenter justify-center flex-wrap w-full my-5">
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
+              <div class="flex items-center justify-center flex-wrap w-full my-5">
+                <div class="flex flex-col flex-1">
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                </div>
                 <label class="flex-none mx-2.5">
                   <input type="checkbox" class="scale-125" />
                 </label>
               </div>
             </li>
             <li>
-              <div class="flex itemscenter justify-center flex-wrap w-full my-5">
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
+              <div class="flex items-center justify-center flex-wrap w-full my-5">
+                <div class="flex flex-col flex-1">
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                </div>
                 <label class="flex-none mx-2.5">
                   <input type="checkbox" class="scale-125" />
                 </label>
               </div>
             </li>
             <li>
-              <div class="flex itemscenter justify-center flex-wrap w-full my-5">
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
-                <label class="flex-1 mx-2.5">
-                  <input type="text" maxlength="50" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
-                </label>
+              <div class="flex items-center justify-center flex-wrap w-full my-5">
+                <div class="flex flex-col flex-1">
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                  <label class="flex-1 mx-2.5 my-2">
+                    <input type="text" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]" />
+                  </label>
+                </div>
                 <label class="flex-none mx-2.5">
                   <input type="checkbox" class="scale-125" />
                 </label>
@@ -107,11 +129,12 @@
           </ul>
         </div>
         <div class="my-2">
-          <button class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400">カードを追加</button>
+          <button class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400 w-40">カードを追加</button>
         </div>
       </div>
-      <div class="w-full my-2">
-        <button class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400">単語帳開始</button>
+      <div class="w-full my-2 flex items-center justify-center">
+        <button class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400 mx-2 w-40">ファイルとして保存</button>
+        <button class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400 mx-2 w-40">単語帳開始</button>
       </div>
     </main>
 
