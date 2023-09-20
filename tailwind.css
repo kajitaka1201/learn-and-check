@@ -900,6 +900,10 @@ h6 {
   min-width: 12.5rem;
 }
 
+.max-w-\[50\%\] {
+  max-width: 50%;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2479,6 +2483,10 @@ h6 {
 .content-\[\'this-is-also-valid\]-weirdly-enough\'\] {
   --tw-content: 'this-is-also-valid]-weirdly-enough';
   content: var(--tw-content);
+}
+
+.\[max-width\:50\%\] {
+  max-width: 50%;
 }
 
 @media (min-width: 640px) {
