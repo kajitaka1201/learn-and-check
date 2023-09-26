@@ -5,7 +5,7 @@
     <meta name="description" content="主にPC向けの単語帳サイトです。覚えたかどうか保存するチェックボックス機能と覚えたか入力して確認できる解答欄機能で定着度を高めます。" />
     <meta name="viewport" content="width=device-width" />
     <title>Learn and Check -解答欄でテスト形式で確認、覚えたらチェックする効率的なweb単語帳-</title>
-    <link href="../tailwind.css" rel="stylesheet" type="text/css" />
+    <link href="../tailwind.css" rel="stylesheet" />
     <link rel="icon" href="../favicon.png" />
   </head>
 
@@ -43,13 +43,13 @@
           <p>以下の入力欄に入力するか、規定のファイル形式のファイルを読み込んで下さい。</p>
           <input type="file" id="input-file" accept=".learn-and-check.json" class="hidden" />
           <div class="flex justify-center items-center">
-            <button id="bt-file" class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400 w-40">ファイルを読み込む</button>
+            <button id="load-file" class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400 w-40">ファイルを読み込む</button>
             <div id="output" class="[max-width:50%]"></div>
           </div>
         </div>
         <div class="flex flex-wrap justify-center items-center my-4 mx-20">
           <label class="mx-2.5 w-full flex justify-center">
-            <input type="text" maxlength="100" placeholder="タイトルを入力して下さい" class="border-[#767676] border border-solid rounded-[5px] flex-1" id="file_name" />
+            <input type="text" maxlength="100" placeholder="タイトルを入力して下さい" class="border-[#767676] border border-solid rounded-[5px] flex-1" id="file-name" />
           </label>
           <ul class="w-full list-decimal min-w-[12.5rem]" id="cards">
             <li class="card">
@@ -65,7 +65,7 @@
                 <label class="flex-none mx-2">
                   <input type="checkbox" class="scale-125 check" />
                 </label>
-                <button class="mx-2 delete_card" onclick="deleteCard()">
+                <button class="mx-2 delete-card" onclick="deleteCard()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
                     <path
                       d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path>
@@ -86,7 +86,7 @@
                 <label class="flex-none mx-2">
                   <input type="checkbox" class="scale-125 check" />
                 </label>
-                <button class="mx-2 delete_card" onclick="deleteCard()">
+                <button class="mx-2 delete-card" onclick="deleteCard()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
                     <path
                       d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path>
@@ -107,7 +107,7 @@
                 <label class="flex-none mx-2">
                   <input type="checkbox" class="scale-125 check" />
                 </label>
-                <button class="mx-2 delete_card" onclick="deleteCard()">
+                <button class="mx-2 delete-card" onclick="deleteCard()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
                     <path
                       d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path>
@@ -128,7 +128,7 @@
                 <label class="flex-none mx-2">
                   <input type="checkbox" class="scale-125 check" />
                 </label>
-                <button class="mx-2 delete_card" onclick="deleteCard()">
+                <button class="mx-2 delete-card" onclick="deleteCard()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
                     <path
                       d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path>
@@ -149,7 +149,7 @@
                 <label class="flex-none mx-2">
                   <input type="checkbox" class="scale-125 check" />
                 </label>
-                <button class="mx-2 delete_card" onclick="deleteCard()">
+                <button class="mx-2 delete-card" onclick="deleteCard()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
                     <path
                       d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path>
@@ -160,7 +160,7 @@
           </ul>
         </div>
         <div class="my-2">
-          <button id="add_card" class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400 w-40">カードを追加</button>
+          <button id="add-card" class="p-2 rounded-lg bg-blue-300 hover:bg-blue-400 w-40">カードを追加</button>
         </div>
       </div>
       <div class="w-full my-2 flex items-center justify-center">
