@@ -1,21 +1,21 @@
 //カードの追加
 const ADD_CARD = document.getElementById("add-card");
-function addCard() {
+function addCard(specifyLocation = "beforeend", problem = "", answer = "", isChecked = false) {
   const CARDS = document.getElementById("cards");
   CARDS.insertAdjacentHTML(
-    "beforeend",
+    specifyLocation,
     `<li class="card">
     <div class="flex items-center justify-center flex-wrap w-full my-5">
       <div class="flex flex-col flex-1">
         <label class="flex-1 mx-2.5 my-2">
-          <input type="text" placeholder="問題を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem] question" />
+          <input type="text" placeholder="問題を入力して下さい" value="${problem}" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem] question" />
         </label>
         <label class="flex-1 mx-2.5 my-2">
-          <input type="text" placeholder="解答を入力して下さい" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem] answer" />
+          <input type="text" placeholder="解答を入力して下さい" value="${answer}" class="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem] answer" />
         </label>
       </div>
       <label class="flex-none mx-2">
-        <input type="checkbox" class="scale-125 check" />
+        <input type="checkbox" class="scale-125 check" ${isChecked == "true" ? "checked" : ""}/>
       </label>
       <button class="mx-2 delete-card" onclick="deleteCard()">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
@@ -38,8 +38,27 @@ function loadFile() {
   INPUT_FILE.click();
 }
 LOAD_FILE.addEventListener("click", loadFile);
-//ファイル情報を表示し、input要素に代入する（inputへの代入はまだ）
+//ファイル情報を表示し、input要素に代入する
 function organizingFileInformation(e) {
+  //inputへの代入
+  const READER = new FileReader();
+  READER.readAsText(e.target.files[0]);
+  READER.addEventListener("load", function (event) {
+    //ファイル名の表示
+    const JSON_NAME = JSON.parse(event.target.result).name;
+    console.log(JSON_NAME);
+    const NAME_FIELD = document.getElementById("file-name");
+    NAME_FIELD.value = JSON_NAME;
+    //問題、答え、チェックボックスの表示
+    const JSON_CONTENTS = JSON.parse(event.target.result).contents.reverse();
+    const FILE_LENGTH = JSON_CONTENTS.length;
+    for (let i = 0; i < FILE_LENGTH; i++) {
+      const QUESTION = JSON_CONTENTS[i].question;
+      const ANSWER = JSON_CONTENTS[i].answer;
+      const IS_CHECKED = JSON_CONTENTS[i].check;
+      addCard("afterbegin", QUESTION, ANSWER, IS_CHECKED);
+    }
+  });
   //ファイル情報の表示
   const FILES = e.target.files;
   if (FILES.length === 0) return;
@@ -90,4 +109,9 @@ function saveAsFile() {
   LINK.download = `${FILE_NAME}.learn-and-check.json`;
   LINK.click();
   document.body.removeChild(LINK);
+}
+
+//単語帳開始
+function start(){
+  
 }
