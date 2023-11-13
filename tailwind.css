@@ -4,7 +4,7 @@ html {
 }
 
 /*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -719,6 +719,10 @@ h6 {
   right: 1rem;
 }
 
+.start-1 {
+  inset-inline-start: 0.25rem;
+}
+
 .top-2\/4 {
   top: 50%;
 }
@@ -763,12 +767,12 @@ h6 {
   clear: none;
 }
 
-.m-5 {
-  margin: 1.25rem;
+.m-1 {
+  margin: 0.25rem;
 }
 
-.m-4 {
-  margin: 1rem;
+.m-5 {
+  margin: 1.25rem;
 }
 
 .mx-2 {
@@ -914,8 +918,20 @@ h6 {
   display: list-item;
 }
 
+.\!hidden {
+  display: none !important;
+}
+
 .hidden {
   display: none;
+}
+
+.h-1 {
+  height: 0.25rem;
+}
+
+.h-2 {
+  height: 0.5rem;
 }
 
 .h-3 {
@@ -932,6 +948,10 @@ h6 {
 
 .h-full {
   height: 100%;
+}
+
+.w-1 {
+  width: 0.25rem;
 }
 
 .w-3 {
@@ -1804,6 +1824,10 @@ h6 {
   border-radius: 1rem;
 }
 
+.rounded-\[10px\] {
+  border-radius: 10px;
+}
+
 .rounded-\[5px\] {
   border-radius: 5px;
 }
@@ -1818,10 +1842,6 @@ h6 {
 
 .rounded-md {
   border-radius: 0.375rem;
-}
-
-.rounded-\[10px\] {
-  border-radius: 10px;
 }
 
 .rounded-b {
@@ -1960,11 +1980,6 @@ h6 {
 .border-blue-600 {
   --tw-border-opacity: 1;
   border-color: rgb(37 99 235 / var(--tw-border-opacity));
-}
-
-.border-gray-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
 .border-gray-400 {
@@ -2606,6 +2621,10 @@ h6 {
 .content-\[\'this-is-also-valid\]-weirdly-enough\'\] {
   --tw-content: 'this-is-also-valid]-weirdly-enough';
   content: var(--tw-content);
+}
+
+.\[a-zA-Z0-9\:\\\\-\\\\\._\$\] {
+  a-z-a--z0-9: \\-\\. $;
 }
 
 .\[max-width\:50\%\] {
