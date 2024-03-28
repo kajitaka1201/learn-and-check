@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className="h-full">
-      <body className="h-full">
+      <body className="h-full grid content-between">
         <Header />
         {children}
         <Footer />
