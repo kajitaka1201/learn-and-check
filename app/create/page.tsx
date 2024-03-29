@@ -37,14 +37,13 @@ export default function Create() {
                 <div className="[max-width:50%]" />
               </div>
             </div>
-            <div>
-              <div className="flex flex-wrap justify-center items-center">
-                <label className=" w-full flex justify-center">
-                  <Input type="text" maxLength={100} placeholder="タイトルを入力して下さい" className="border-[#767676] border border-solid rounded-[5px] flex-1" />
-                </label>
-                <ul className="w-full list-decimal min-w-[12.5rem]">
-                  <Card />
-                </ul>
+            <div className="grid gap-5">
+              <label className=" w-full flex justify-center">
+                <Input type="text" maxLength={100} placeholder="タイトルを入力して下さい" className="border-[#767676] border border-solid rounded-[5px] flex-1" />
+              </label>
+              <div className="grid gap-3 w-full list-decimal min-w-[12.5rem]">
+                <Card index={1} />
+                <Card index={2} />
               </div>
               <div>
                 <Button className="p-2 rounded-lg hover:bg-blue-400 w-40">カードを追加</Button>
