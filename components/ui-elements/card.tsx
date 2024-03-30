@@ -21,7 +21,21 @@ export default function Card({
           <Input
             type="text"
             defaultValue={content.question}
-            placeholder="問題を入力して下さい"
+            onChange={(e) => {
+              setFileData((prev) => {
+                return {
+                  ...prev,
+                  contents:
+                    prev?.contents.map((c) => {
+                      if (c.id === content.id) {
+                        return { ...c, question: e.target.value };
+                      }
+                      return c;
+                    }) || [],
+                };
+              });
+            }}
+            placeholder="問題"
             className="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]"
           />
         </label>
@@ -29,12 +43,43 @@ export default function Card({
           <Input
             type="text"
             defaultValue={content.answer}
-            placeholder="解答を入力して下さい"
+            onChange={(e) => {
+              setFileData((prev) => {
+                return {
+                  ...prev,
+                  contents:
+                    prev?.contents.map((c) => {
+                      if (c.id === content.id) {
+                        return { ...c, answer: e.target.value };
+                      }
+                      return c;
+                    }) || [],
+                };
+              });
+            }}
+            placeholder="解答"
             className="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]"
           />
         </label>
       </div>
-      <Checkbox className="w-6 h-6" defaultChecked={content.isCheck} />
+      <Checkbox
+        className="w-6 h-6"
+        defaultChecked={content.isCheck}
+        onClick={() => {
+          setFileData((prev) => {
+            return {
+              ...prev,
+              contents:
+                prev?.contents.map((c) => {
+                  if (c.id === content.id) {
+                    return { ...c, isCheck: !c.isCheck };
+                  }
+                  return c;
+                }) || [],
+            };
+          });
+        }}
+      />
       <Button
         className=" hover:bg-blue-400"
         onClick={() =>
