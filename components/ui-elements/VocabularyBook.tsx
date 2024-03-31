@@ -10,21 +10,116 @@ import {
 import { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Checkbox } from "@radix-ui/react-checkbox";
+import { Label } from "../ui/label";
+import { Checkbox } from "../ui/checkbox";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+
+//formSchema
+const formSchema = z.object({
+  useAnswerColumn: z.boolean(),
+  randomQuestion: z.boolean(),
+  excludeCheckedQuestions: z.boolean(),
+});
 
 //VocabularyBook
 export default function VocabularyBook() {
   //Dialogの状態
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+  //form
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      useAnswerColumn: false,
+      randomQuestion: false,
+      excludeCheckedQuestions: false,
+    },
+  });
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+  }
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger>単語帳開始</DialogTrigger>
+      <DialogTrigger className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow h-9 p-2 rounded-lg hover:bg-blue-400 mx-2 w-40">
+        単語帳開始
+      </DialogTrigger>
       <DialogContent className="max-w-none w-4/5 h-4/5 flex flex-col">
         <DialogHeader className="flex-none">
           <DialogTitle>単語帳</DialogTitle>
         </DialogHeader>
-        <div className="flex-1">
+        <article className="border-blue-600 border-2 rounded-2xl grid justify-items-center p-5">
+          <h1 className="text-4xl">単語帳設定</h1>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full grid gap-2">
+              <FormField
+                control={form.control}
+                name="useAnswerColumn"
+                render={({ field }) => {
+                  return (
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4 shadow">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          className="w-5 h-5"
+                        />
+                      </FormControl>
+                      <FormLabel className="w-full">解答欄機能を使用する</FormLabel>
+                    </FormItem>
+                  );
+                }}
+              />
+              <FormField
+                control={form.control}
+                name="randomQuestion"
+                render={({ field }) => {
+                  return (
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4 shadow">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          className="w-5 h-5"
+                        />
+                      </FormControl>
+                      <FormLabel className="w-full">ランダムに出題する</FormLabel>
+                    </FormItem>
+                  );
+                }}
+              />
+              <FormField
+                control={form.control}
+                name="excludeCheckedQuestions"
+                render={({ field }) => {
+                  return (
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4 shadow">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          className="w-5 h-5"
+                        />
+                      </FormControl>
+                      <FormLabel className="w-full">チェック済みの問題を除外する</FormLabel>
+                    </FormItem>
+                  );
+                }}
+              />
+              <Button type="submit">スタート</Button>
+            </form>
+          </Form>
+        </article>
+        <article className="flex-1 hidden">
           <div className="flex flex-col h-full">
             <div className="flex-1 mx-32">
               <div className="h-full flex items-center">
@@ -84,7 +179,7 @@ export default function VocabularyBook() {
               </div>
             </div>
           </div>
-        </div>
+        </article>
       </DialogContent>
     </Dialog>
   );

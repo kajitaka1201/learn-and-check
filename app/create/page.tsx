@@ -8,7 +8,7 @@ import { useState } from "react";
 import { v4 as createUUID } from "uuid";
 import { downloadFile } from "@/lib/download";
 import { uploadFile } from "@/lib/upload";
-import VocabularyBook from "@/components/ui-elements/VocabularyBook"
+import VocabularyBook from "@/components/ui-elements/VocabularyBook";
 
 //type
 export type FileType = {
@@ -27,8 +27,7 @@ export type FileType = {
 export default function Create() {
   //fileData
   const [fileData, setFileData] = useState<FileType>();
-  console.log(fileData);
-  
+
   //function
   function addCard() {
     setFileData({
@@ -58,7 +57,7 @@ export default function Create() {
     <>
       <main className="my-10 mx-5">
         <div className="flex flex-wrap flex-col items-center text-center gap-10 max-w-7xl mx-auto">
-          <div className="w-full border-blue-600 border-2 rounded-2xl grid gap-5 px-20 py-5">
+          <section className="w-full border-blue-600 border-2 rounded-2xl grid gap-5 px-20 py-5">
             <div>
               <h1 className="text-4xl">入力欄</h1>
               <p>以下の入力欄に入力するか、規定のファイル形式のファイルを読み込んで下さい。</p>
@@ -96,7 +95,7 @@ export default function Create() {
                 </Button>
               </div>
             </div>
-          </div>
+          </section>
           <div className="flex">
             <Button className="p-2 rounded-lg hover:bg-blue-400 mx-2 w-40" onClick={download}>
               ファイルとして保存
