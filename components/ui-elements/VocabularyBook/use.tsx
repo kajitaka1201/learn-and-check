@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 
-
 export default function Use() {
   return (
     <article className="flex-1">
@@ -12,18 +11,18 @@ export default function Use() {
           <div className="h-full flex items-center">
             <div className="h-full flex flex-col items-center justify-center mx-auto w-full">
               <div className="w-full text-center my-2">
-                <p className="text-5xl">問題文</p>
+                <p className="text-4xl">問題文</p>
               </div>
               <div className="w-full text-center flex justify-center my-2">
                 <Input
                   type="text"
                   placeholder="回答欄"
-                  className="border-[#767676] border border-solid rounded-[10px] flex-1 text-2xl p-2"
+                  className="border-[#767676] border border-solid rounded-[5px]"
                 />
                 <Button className="ml-4 p-2 rounded-lg hover:bg-blue-400 w-20">確認</Button>
               </div>
               <div className="w-full text-center my-2">
-                <p className="text-5xl hidden">解答</p>
+                <p className="text-4xl">解答</p>
               </div>
             </div>
           </div>
@@ -45,6 +44,7 @@ export default function Use() {
             <div className="w-40 text-center">
               <p>
                 <span />
+                /
                 <span />
               </p>
             </div>
