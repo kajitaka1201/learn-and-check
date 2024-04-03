@@ -1,5 +1,4 @@
 "use client";
-//import
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Card from "@/components/ui-elements/card";
@@ -9,7 +8,6 @@ import { downloadFile } from "@/lib/download";
 import { uploadFile } from "@/lib/upload";
 import VocabularyBook from "@/components/ui-elements/VocabularyBook";
 
-//type
 export type FileType = {
   name?: string;
   contents: {
@@ -22,12 +20,10 @@ export type FileType = {
   }[];
 };
 
-//createページ内容
 export default function Create() {
-  //fileData
-  const [fileData, setFileData] = useState<FileType>();
+  const [fileData, setFileData] = useState<FileType>({ contents: [] });
+  console.log(fileData);
 
-  //function
   function addCard() {
     setFileData({
       ...fileData,
@@ -44,12 +40,9 @@ export default function Create() {
     });
   }
   function upload() {
-    uploadFile().then((data) => {
+    uploadFile().then(data => {
       setFileData(JSON.parse(data.content));
     });
-  }
-  function start() {
-    //ここに処理を書く
   }
 
   return (
@@ -73,7 +66,7 @@ export default function Create() {
                 <Input
                   type="text"
                   defaultValue={fileData?.name}
-                  onChange={(e) => setFileData({ ...fileData, name: e.target.value } as FileType)}
+                  onChange={e => setFileData({ ...fileData, name: e.target.value } as FileType)}
                   placeholder="タイトル"
                   className="border-[#767676] border border-solid rounded-[5px] flex-1"
                 />
@@ -99,7 +92,7 @@ export default function Create() {
             <Button className="p-2 rounded-lg hover:bg-blue-400 mx-2 w-40" onClick={download}>
               ファイルとして保存
             </Button>
-            <VocabularyBook />
+            <VocabularyBook fileData={fileData} />
           </div>
         </div>
       </main>

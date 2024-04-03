@@ -1,4 +1,3 @@
-//import
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -9,12 +8,11 @@ import { formSchema } from ".";
 
 export default function Settings({
   setSettings,
-  start
+  start,
 }: {
   setSettings: React.Dispatch<React.SetStateAction<z.infer<typeof formSchema>>>;
   start: () => void;
 }) {
-  //form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

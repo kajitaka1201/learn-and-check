@@ -1,4 +1,4 @@
-//import
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,7 +11,7 @@ export default function Card({
 }: {
   index: number;
   content: FileType["contents"][number];
-  setFileData: React.Dispatch<React.SetStateAction<FileType | undefined>>;
+  setFileData: React.Dispatch<React.SetStateAction<FileType>>;
 }) {
   return (
     <div className="flex items-center justify-center flex-wrap w-full gap-2">

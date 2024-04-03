@@ -1,9 +1,19 @@
-//import
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { FileType } from "@/app/create/page";
+import { z } from "zod";
+import { formSchema } from ".";
+import { useState } from "react";
 
-export default function Use() {
+export default function Use({
+  fileData,
+  Settings,
+}: {
+  fileData: FileType;
+  Settings: z.infer<typeof formSchema>;
+}) {
+  const [index, setIndex] = useState(0);
   return (
     <article className="flex-1">
       <div className="flex flex-col h-full">
@@ -11,7 +21,7 @@ export default function Use() {
           <div className="h-full flex items-center">
             <div className="h-full flex flex-col items-center justify-center mx-auto w-full">
               <div className="w-full text-center my-2">
-                <p className="text-4xl">問題文</p>
+                <p className="text-4xl">{fileData["contents"][index]["question"]}</p>
               </div>
               <div className="w-full text-center flex justify-center my-2">
                 <Input
@@ -22,7 +32,7 @@ export default function Use() {
                 <Button className="ml-4 p-2 rounded-lg hover:bg-blue-400 w-20">確認</Button>
               </div>
               <div className="w-full text-center my-2">
-                <p className="text-4xl">解答</p>
+                <p className="text-4xl">{fileData["contents"][index]["answer"]}</p>
               </div>
             </div>
           </div>
@@ -43,9 +53,7 @@ export default function Use() {
             </div>
             <div className="w-40 text-center">
               <p>
-                <span />
-                /
-                <span />
+                <span>{index + 1}</span>/<span>{fileData["contents"].length}</span>
               </p>
             </div>
             <div>
