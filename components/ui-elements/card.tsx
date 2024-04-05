@@ -1,4 +1,3 @@
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -14,19 +13,19 @@ export default function Card({
   setFileData: React.Dispatch<React.SetStateAction<FileType>>;
 }) {
   return (
-    <div className="flex items-center justify-center flex-wrap w-full gap-2">
+    <div className="flex w-full flex-wrap items-center justify-center gap-2">
       <p>{index + 1}</p>
       <div className="flex flex-1 gap-2">
         <label className="flex-1">
           <Input
             type="text"
             defaultValue={content.question}
-            onChange={(e) => {
-              setFileData((prev) => {
+            onChange={e => {
+              setFileData(prev => {
                 return {
                   ...prev,
                   contents:
-                    prev?.contents.map((c) => {
+                    prev?.contents.map(c => {
                       if (c.id === content.id) {
                         return { ...c, question: e.target.value };
                       }
@@ -36,19 +35,19 @@ export default function Card({
               });
             }}
             placeholder="問題"
-            className="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]"
+            className="w-full min-w-[10rem] rounded-[5px] border border-solid border-[#767676]"
           />
         </label>
         <label className="flex-1">
           <Input
             type="text"
             defaultValue={content.answer}
-            onChange={(e) => {
-              setFileData((prev) => {
+            onChange={e => {
+              setFileData(prev => {
                 return {
                   ...prev,
                   contents:
-                    prev?.contents.map((c) => {
+                    prev?.contents.map(c => {
                       if (c.id === content.id) {
                         return { ...c, answer: e.target.value };
                       }
@@ -58,19 +57,19 @@ export default function Card({
               });
             }}
             placeholder="解答"
-            className="w-full border-[#767676] border border-solid rounded-[5px] min-w-[10rem]"
+            className="w-full min-w-[10rem] rounded-[5px] border border-solid border-[#767676]"
           />
         </label>
       </div>
       <Checkbox
-        className="w-6 h-6"
+        className="h-6 w-6"
         defaultChecked={content.isCheck}
         onClick={() => {
-          setFileData((prev) => {
+          setFileData(prev => {
             return {
               ...prev,
               contents:
-                prev?.contents.map((c) => {
+                prev?.contents.map(c => {
                   if (c.id === content.id) {
                     return { ...c, isCheck: !c.isCheck };
                   }
@@ -83,10 +82,10 @@ export default function Card({
       <Button
         className=" hover:bg-blue-400"
         onClick={() =>
-          setFileData((prev) => {
+          setFileData(prev => {
             return {
               ...prev,
-              contents: prev?.contents?.filter((c) => c.id !== content.id) || [],
+              contents: prev?.contents?.filter(c => c.id !== content.id) || [],
             };
           })
         }>

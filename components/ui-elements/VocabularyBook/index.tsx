@@ -23,12 +23,12 @@ export default function VocabularyBook({ fileData }: { fileData: FileType }) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger
-        className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow h-9 p-2 rounded-lg hover:bg-blue-400 mx-2 w-40"
+        className="mx-2 inline-flex h-9 w-40 items-center justify-center whitespace-nowrap rounded-lg bg-primary p-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-blue-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
         disabled={fileData["contents"].length === 0}>
         単語帳開始
       </DialogTrigger>
       <DialogContent
-        className="max-w-none w-4/5 h-4/5 flex flex-col"
+        className="flex h-4/5 w-4/5 max-w-none flex-col"
         onEscapeKeyDown={e => e.preventDefault()}
         onPointerDownOutside={e => e.preventDefault()}>
         {isOpen && <DialogBody fileData={fileData} />}

@@ -27,10 +27,10 @@ export default function Settings({
     start();
   }
   return (
-    <article className="border-blue-600 border-2 rounded-2xl grid justify-items-center p-5">
+    <article className="grid justify-items-center rounded-2xl border-2 border-blue-600 p-5">
       <h1 className="text-4xl">単語帳設定</h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full grid gap-2">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="grid w-full gap-2">
           <FormField
             control={form.control}
             name="useAnswerColumn"
@@ -41,7 +41,7 @@ export default function Settings({
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                     />
                   </FormControl>
                   <FormLabel className="w-full">解答欄機能を使用する</FormLabel>
@@ -59,7 +59,7 @@ export default function Settings({
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                     />
                   </FormControl>
                   <FormLabel className="w-full">ランダムに出題する</FormLabel>
@@ -77,7 +77,7 @@ export default function Settings({
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                     />
                   </FormControl>
                   <FormLabel className="w-full">チェック済みの問題を除外する</FormLabel>

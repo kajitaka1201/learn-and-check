@@ -16,6 +16,11 @@ export default function Use({
   const [index, setIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [isDisplayed, setIsDisplayed] = useState(false);
+  const [idList, setIdList] = useState(
+    Settings.randomQuestion
+      ? fileData["contents"].map(c => c.id).toSorted(() => Math.random() - 0.5)
+      : fileData["contents"].map(c => c.id)
+  );
   function handleReturn(): void {
     setIndex(index - 1);
     setIsDisplayed(false);
@@ -25,44 +30,52 @@ export default function Use({
     setIsDisplayed(false);
   }
   function checkAnswer(): void {
-    if (inputValue === fileData["contents"][index]["answer"]) {
+    if (Settings.useAnswerColumn === false) {
       setIsDisplayed(true);
-      alert("正解");
     } else {
-      setIsDisplayed(true);
-      alert("不正解");
+      if (inputValue === fileData["contents"].find(e => e.id === idList[index])?.answer) {
+        setIsDisplayed(true);
+        alert("正解");
+      } else {
+        setIsDisplayed(true);
+        alert("不正解");
+      }
     }
   }
+
   return (
     <article className="flex-1">
-      <div className="flex flex-col h-full">
-        <div className="flex-1 mx-32">
-          <div className="h-full flex items-center">
-            <div className="h-full flex flex-col items-center justify-center mx-auto w-full">
-              <div className="w-full text-center my-2">
-                <p className="text-4xl">{fileData["contents"][index]["question"]}</p>
+      <div className="flex h-full flex-col gap-5">
+        <div className="flex w-full flex-1 flex-col items-center justify-center">
+          <div className="grid w-full gap-3 bg-blue-100 p-5">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex-1 rounded-md border border-gray-500">
+                <p className="text-xs text-black text-opacity-80">問題</p>
+                <p className="px-4 text-4xl">
+                  {fileData["contents"].find(e => e.id === idList[index])?.question}
+                </p>
               </div>
-              <div className="w-full text-center flex justify-center my-2">
-                <Input
-                  type="text"
-                  placeholder="回答欄"
-                  className="border-[#767676] border border-solid rounded-[5px]"
-                  onChange={e => setInputValue(e.target.value)}
-                />
-                <Button
-                  className="ml-4 p-2 rounded-lg hover:bg-blue-400 w-20"
-                  onClick={checkAnswer}>
-                  確認
-                </Button>
-              </div>
-              <div className="w-full text-center my-2">
-                <p className="text-4xl">{isDisplayed && fileData["contents"][index]["answer"]}</p>
+              <Button
+                className="w-20 flex-none rounded-lg p-2 hover:bg-blue-400"
+                onClick={checkAnswer}>
+                確認
+              </Button>
+            </div>
+            <div className="w-full">
+              <div className="rounded-md border border-gray-500">
+                <p className="text-xs text-black text-opacity-80">解答</p>
+                <p className="px-4 text-4xl">
+                  {isDisplayed
+                    ? fileData["contents"].find(e => e.id === idList[index])?.answer
+                    : "確認ボタンを押して下さい"}
+                </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex-none relative mb-5">
-          <div className="flex justify-center items-center">
+        <div className="flex w-full items-center justify-between gap-3"></div>
+        <div className="relative flex-none">
+          <div className="flex items-center justify-center">
             <div>
               <Button className="hover:bg-blue-400" onClick={handleReturn} disabled={index === 0}>
                 <svg
@@ -77,14 +90,14 @@ export default function Use({
             </div>
             <div className="w-40 text-center">
               <p>
-                <span>{index + 1}</span>/<span>{fileData["contents"].length}</span>
+                <span>{index + 1}</span>/<span>{idList.length}</span>
               </p>
             </div>
             <div>
               <Button
                 className="hover:bg-blue-400"
                 onClick={handleNext}
-                disabled={index === fileData["contents"].length - 1}>
+                disabled={index === idList.length - 1}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="32"
@@ -96,10 +109,20 @@ export default function Use({
               </Button>
             </div>
           </div>
-          <div className="absolute z-20 bottom-0 right-5 h-full flex">
-            <Checkbox className="w-10 h-10" />
+          <div className="absolute bottom-0 right-5 z-20 flex h-full">
+            <Checkbox className="h-10 w-10" />
           </div>
         </div>
+        {Settings.useAnswerColumn && (
+          <div className="bg-blue-200 p-4">
+            <Input
+              type="text"
+              placeholder="回答欄"
+              className="rounded-[5px] border border-solid border-[#767676]"
+              onChange={e => setInputValue(e.target.value)}
+            />
+          </div>
+        )}
       </div>
     </article>
   );

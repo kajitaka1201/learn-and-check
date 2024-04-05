@@ -20,7 +20,7 @@ export async function uploadFile(): Promise<{
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.click();
-    const file = await new Promise<File>((resolve) => {
+    const file = await new Promise<File>(resolve => {
       fileInput.addEventListener("change", () => {
         const file = fileInput.files?.[0];
         if (!file) throw new Error("ファイルが選択されていません");

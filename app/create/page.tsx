@@ -47,31 +47,31 @@ export default function Create() {
 
   return (
     <>
-      <main className="my-10 mx-5">
-        <div className="flex flex-wrap flex-col items-center text-center gap-10 max-w-7xl mx-auto">
-          <section className="w-full border-blue-600 border-2 rounded-2xl grid gap-5 px-20 py-5">
+      <main className="mx-5 my-10">
+        <div className="mx-auto flex max-w-7xl flex-col flex-wrap items-center gap-10 text-center">
+          <section className="grid w-full gap-5 rounded-2xl border-2 border-blue-600 px-20 py-5">
             <div>
               <h1 className="text-4xl">入力欄</h1>
               <p>以下の入力欄に入力するか、規定のファイル形式のファイルを読み込んで下さい。</p>
               <Input type="file" accept=".learn-and-check.json" className="hidden" />
-              <div className="flex justify-center items-center">
-                <Button className="p-2 rounded-lg hover:bg-blue-400 w-40" onClick={upload}>
+              <div className="flex items-center justify-center">
+                <Button className="w-40 rounded-lg p-2 hover:bg-blue-400" onClick={upload}>
                   ファイルを読み込む
                 </Button>
                 <div className="[max-width:50%]" />
               </div>
             </div>
             <div className="grid gap-5">
-              <label className=" w-full flex justify-center">
+              <label className=" flex w-full justify-center">
                 <Input
                   type="text"
                   defaultValue={fileData?.name}
                   onChange={e => setFileData({ ...fileData, name: e.target.value } as FileType)}
                   placeholder="タイトル"
-                  className="border-[#767676] border border-solid rounded-[5px] flex-1"
+                  className="flex-1 rounded-[5px] border border-solid border-[#767676]"
                 />
               </label>
-              <div className="grid gap-3 w-full list-decimal min-w-[12.5rem]">
+              <div className="grid w-full min-w-[12.5rem] list-decimal gap-3">
                 {fileData?.contents?.map((content, index) => (
                   <Card
                     key={content.id}
@@ -82,14 +82,14 @@ export default function Create() {
                 ))}
               </div>
               <div>
-                <Button className="p-2 rounded-lg hover:bg-blue-400 w-40" onClick={addCard}>
+                <Button className="w-40 rounded-lg p-2 hover:bg-blue-400" onClick={addCard}>
                   カードを追加
                 </Button>
               </div>
             </div>
           </section>
           <div className="flex">
-            <Button className="p-2 rounded-lg hover:bg-blue-400 mx-2 w-40" onClick={download}>
+            <Button className="mx-2 w-40 rounded-lg p-2 hover:bg-blue-400" onClick={download}>
               ファイルとして保存
             </Button>
             <VocabularyBook fileData={fileData} />

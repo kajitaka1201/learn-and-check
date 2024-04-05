@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <main className="w-full">
-        <div className="p-12 max-w-7xl grid justify-items-center gap-12 w-full text-center mx-auto">
+        <div className="mx-auto grid w-full max-w-7xl justify-items-center gap-12 p-12 text-center">
           <section>
             <h1 className="text-4xl">完全無料のweb単語帳</h1>
             <p>1対1で覚える英単語や漢字などを暗記する用のweb単語帳</p>
