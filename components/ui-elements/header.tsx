@@ -6,7 +6,7 @@ export default function Header() {
       <div className="flex items-center justify-between p-5">
         <Link href="./" className="mr-5" title="ホームへ">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="./logo.webp" alt="ロゴ" height="50px" width="100px" />
+          <img src="/learn-and-check/logo.webp" alt="ロゴ" height="50px" width="100px" />
         </Link>
         <a href="./create/" title="単語帳作成" className="flex items-center">
           <svg viewBox="0 0 256 256" width="50px" height="50px">
