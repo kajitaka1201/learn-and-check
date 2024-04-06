@@ -92,7 +92,7 @@ export default function Create() {
             <Button className="mx-2 w-40 rounded-lg p-2 hover:bg-blue-400" onClick={download}>
               ファイルとして保存
             </Button>
-            <VocabularyBook fileData={fileData} />
+            <VocabularyBook fileData={fileData} setFileData={setFileData}/>
           </div>
         </div>
       </main>

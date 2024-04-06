@@ -8,18 +8,27 @@ import { useState } from "react";
 
 export default function Use({
   fileData,
+  setFileData,
   Settings,
 }: {
   fileData: FileType;
+  setFileData: React.Dispatch<React.SetStateAction<FileType>>;
   Settings: z.infer<typeof formSchema>;
 }) {
   const [index, setIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [isDisplayed, setIsDisplayed] = useState(false);
-  const [idList, setIdList] = useState(
-    Settings.randomQuestion
-      ? fileData["contents"].map(c => c.id).toSorted(() => Math.random() - 0.5)
-      : fileData["contents"].map(c => c.id)
+  const [idList, setIdList] = useState<string[]>(
+    Settings.randomQuestion && Settings.excludeCheckedQuestions
+      ? fileData["contents"]
+          .filter(e => !e.isCheck)
+          .map(c => c.id)
+          .toSorted(() => Math.random() - 0.5)
+      : Settings.randomQuestion
+        ? fileData["contents"].map(c => c.id).toSorted(() => Math.random() - 0.5)
+        : Settings.excludeCheckedQuestions
+          ? fileData["contents"].filter(e => !e.isCheck).map(c => c.id)
+          : fileData["contents"].map(c => c.id)
   );
   function handleReturn(): void {
     setIndex(index - 1);
@@ -48,29 +57,51 @@ export default function Use({
       <div className="flex h-full flex-col gap-5">
         <div className="flex w-full flex-1 flex-col items-center justify-center">
           <div className="grid w-full gap-3 bg-blue-100 p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex-1 rounded-md border border-gray-500">
-                <p className="text-xs text-black text-opacity-80">問題</p>
-                <p className="px-4 text-4xl">
-                  {fileData["contents"].find(e => e.id === idList[index])?.question}
-                </p>
+            <div className="flex-1 rounded-md border border-gray-500">
+              <p className="text-xs text-black text-opacity-80">問題</p>
+              <p className="px-4 text-4xl">
+                {fileData["contents"].find(e => e.id === idList[index])?.question}
+              </p>
+            </div>
+            {isDisplayed ? (
+              <div className="flex items-center gap-3">
+                <div className="flex-1 rounded-md border border-gray-500">
+                  <p className="text-xs text-black text-opacity-80">解答</p>
+                  <p className="flex-none px-4 text-4xl">
+                    {fileData["contents"].find(e => e.id === idList[index])?.answer}
+                  </p>
+                </div>
+                {(() => {
+                  const isChecked = fileData["contents"].find(e => e.id === idList[index])?.isCheck;
+                  return (
+                    <Checkbox
+                      className="h-10 w-10"
+                      checked={isChecked}
+                      onClick={() => {
+                        setFileData(prev => {
+                          return {
+                            ...prev,
+                            contents:
+                              prev?.contents.map(c => {
+                                if (c.id === idList[index]) {
+                                  return { ...c, isCheck: !c.isCheck };
+                                }
+                                return c;
+                              }) || [],
+                          };
+                        });
+                      }}
+                    />
+                  );
+                })()}{" "}
               </div>
+            ) : (
               <Button
-                className="w-20 flex-none rounded-lg p-2 hover:bg-blue-400"
+                className="w-full flex-none rounded-lg p-2 hover:bg-blue-400"
                 onClick={checkAnswer}>
                 確認
               </Button>
-            </div>
-            <div className="w-full">
-              <div className="rounded-md border border-gray-500">
-                <p className="text-xs text-black text-opacity-80">解答</p>
-                <p className="px-4 text-4xl">
-                  {isDisplayed
-                    ? fileData["contents"].find(e => e.id === idList[index])?.answer
-                    : "確認ボタンを押して下さい"}
-                </p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
         <div className="flex w-full items-center justify-between gap-3"></div>
@@ -108,9 +139,6 @@ export default function Use({
                 </svg>
               </Button>
             </div>
-          </div>
-          <div className="absolute bottom-0 right-5 z-20 flex h-full">
-            <Checkbox className="h-10 w-10" />
           </div>
         </div>
         {Settings.useAnswerColumn && (

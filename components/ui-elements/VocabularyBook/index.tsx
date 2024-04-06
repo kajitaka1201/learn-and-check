@@ -17,7 +17,13 @@ export const formSchema = z.object({
   excludeCheckedQuestions: z.boolean(),
 });
 
-export default function VocabularyBook({ fileData }: { fileData: FileType }) {
+export default function VocabularyBook({
+  fileData,
+  setFileData,
+}: {
+  fileData: FileType;
+  setFileData: React.Dispatch<React.SetStateAction<FileType>>;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -31,12 +37,18 @@ export default function VocabularyBook({ fileData }: { fileData: FileType }) {
         className="flex h-4/5 w-4/5 max-w-none flex-col"
         onEscapeKeyDown={e => e.preventDefault()}
         onPointerDownOutside={e => e.preventDefault()}>
-        {isOpen && <DialogBody fileData={fileData} />}
+        {isOpen && <DialogBody fileData={fileData} setFileData={setFileData} />}
       </DialogContent>
     </Dialog>
   );
 }
-function DialogBody({ fileData }: { fileData: FileType }) {
+function DialogBody({
+  fileData,
+  setFileData,
+}: {
+  fileData: FileType;
+  setFileData: React.Dispatch<React.SetStateAction<FileType>>;
+}) {
   const [mode, setMode] = useState<"set" | "use" | "result">("set");
   const [settings, setSettings] = useState<z.infer<typeof formSchema>>({
     useAnswerColumn: false,
@@ -49,7 +61,7 @@ function DialogBody({ fileData }: { fileData: FileType }) {
         <DialogTitle>単語帳</DialogTitle>
       </DialogHeader>
       {mode === "set" && <Settings setSettings={setSettings} start={() => setMode("use")} />}
-      {mode === "use" && <Use fileData={fileData} Settings={settings} />}
+      {mode === "use" && <Use fileData={fileData} setFileData={setFileData} Settings={settings} />}
     </>
   );
 }

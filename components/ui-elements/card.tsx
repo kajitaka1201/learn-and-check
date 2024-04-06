@@ -63,7 +63,7 @@ export default function Card({
       </div>
       <Checkbox
         className="h-6 w-6"
-        defaultChecked={content.isCheck}
+        checked={content.isCheck}
         onClick={() => {
           setFileData(prev => {
             return {
