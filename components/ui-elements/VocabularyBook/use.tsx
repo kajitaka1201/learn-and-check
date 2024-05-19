@@ -2,9 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { FileType } from "@/app/create/page";
-import { set, z } from "zod";
+import { z } from "zod";
 import { formSchema } from ".";
 import { useState } from "react";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 
 export default function Use({
   fileData,
@@ -31,52 +32,87 @@ export default function Use({
           : fileData["contents"].map(c => c.id)
   );
   function handleReturn(): void {
-    setIndex(index - 1);
+    if (index !== 0) {
+      setIndex(index - 1);
+    }
     setIsDisplayed(false);
   }
   function handleNext(): void {
-    setIndex(index + 1);
+    if (index !== idList.length - 1) {
+      setIndex(index + 1);
+    }
     setIsDisplayed(false);
   }
   function checkAnswer(): void {
-    if (Settings.useAnswerColumn === false) {
-      setIsDisplayed(true);
-    } else {
+    if (Settings.useAnswerColumn === true) {
       if (inputValue === fileData["contents"].find(e => e.id === idList[index])?.answer) {
-        setIsDisplayed(true);
         alert("正解");
       } else {
-        setIsDisplayed(true);
         alert("不正解");
       }
     }
+    setIsDisplayed(true);
   }
+  useKeyboardShortcut(["d"], e => {
+    e.preventDefault();
+    handleNext();
+  });
+  useKeyboardShortcut(["ArrowRight"], e => {
+    e.preventDefault();
+    handleNext();
+  });
+  useKeyboardShortcut(["a"], e => {
+    e.preventDefault();
+    handleReturn();
+  });
+  useKeyboardShortcut(["ArrowLeft"], e => {
+    e.preventDefault();
+    handleReturn();
+  });
+  useKeyboardShortcut(["c"], e => {
+    e.preventDefault();
+    setFileData(prev => {
+      return {
+        ...prev,
+        contents:
+          prev?.contents.map(c => {
+            if (c.id === idList[index]) {
+              return { ...c, isCheck: !c.isCheck };
+            }
+            return c;
+          }) || [],
+      };
+    });
+  });
+  useKeyboardShortcut(["ctrl", "enter"], e => {
+    e.preventDefault();
+    checkAnswer();
+  });
+  useKeyboardShortcut([" "], e => {
+    e.preventDefault();
+    checkAnswer();
+  });
 
   return (
     <article className="flex-1">
       <div className="flex h-full flex-col gap-5">
         <div className="flex w-full flex-1 flex-col items-center justify-center">
-          <div className="grid w-full gap-3 bg-blue-100 p-5">
-            <div className="flex-1 rounded-md border border-gray-500">
-              <p className="text-xs text-black text-opacity-80">問題</p>
-              <p className="px-4 text-4xl">
+          <div className="grid w-full p-5">
+            <div className="py-2">
+              <p className="text-4xl">
                 {fileData["contents"].find(e => e.id === idList[index])?.question}
               </p>
             </div>
             {isDisplayed ? (
-              <div className="flex items-center gap-3">
-                <div className="flex-1 rounded-md border border-gray-500">
-                  <p className="text-xs text-black text-opacity-80">解答</p>
-                  <p className="flex-none px-4 text-4xl">
-                    {fileData["contents"].find(e => e.id === idList[index])?.answer}
-                  </p>
-                </div>
+              <div className="flex items-center gap-3 py-2">
+                <p className="flex-1 text-4xl">
+                  {fileData["contents"].find(e => e.id === idList[index])?.answer}
+                </p>
                 {(() => {
-                  const isChecked = fileData["contents"].find(e => e.id === idList[index])?.isCheck;
                   return (
                     <Checkbox
                       className="h-10 w-10"
-                      checked={isChecked}
+                      checked={fileData["contents"].find(e => e.id === idList[index])?.isCheck}
                       onClick={() => {
                         setFileData(prev => {
                           return {
@@ -97,7 +133,7 @@ export default function Use({
               </div>
             ) : (
               <Button
-                className="w-full flex-none rounded-lg p-2 hover:bg-blue-400"
+                className="h-auto w-full flex-none rounded-lg p-2 text-4xl hover:bg-blue-400"
                 onClick={checkAnswer}>
                 確認
               </Button>

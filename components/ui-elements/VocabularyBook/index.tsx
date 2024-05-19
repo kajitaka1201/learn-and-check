@@ -20,14 +20,17 @@ export const formSchema = z.object({
 export default function VocabularyBook({
   fileData,
   setFileData,
+  isVocabularyStarted,
+  setIsVocabularyStarted,
 }: {
   fileData: FileType;
   setFileData: React.Dispatch<React.SetStateAction<FileType>>;
+  isVocabularyStarted: boolean,
+  setIsVocabularyStarted: React.Dispatch<React.SetStateAction<boolean>>,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isVocabularyStarted} onOpenChange={setIsVocabularyStarted}>
       <DialogTrigger
         className="mx-2 inline-flex h-9 w-40 items-center justify-center whitespace-nowrap rounded-lg bg-primary p-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-blue-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
         disabled={fileData["contents"].length === 0}>
@@ -37,7 +40,7 @@ export default function VocabularyBook({
         className="flex h-4/5 w-4/5 max-w-none flex-col"
         onEscapeKeyDown={e => e.preventDefault()}
         onPointerDownOutside={e => e.preventDefault()}>
-        {isOpen && <DialogBody fileData={fileData} setFileData={setFileData} />}
+        {isVocabularyStarted && <DialogBody fileData={fileData} setFileData={setFileData} />}
       </DialogContent>
     </Dialog>
   );
