@@ -35,7 +35,7 @@ export type TableType = {
   question: string;
   answer: string;
 };
-export const columns: ColumnDef<TableType>[] = [
+const columns: ColumnDef<TableType>[] = [
   {
     accessorKey: "index",
     header: () => <>No.</>,
