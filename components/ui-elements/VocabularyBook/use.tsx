@@ -133,7 +133,7 @@ export default function Use({
               </div>
             ) : (
               <Button
-                className="h-auto w-full flex-none rounded-lg p-2 text-4xl hover:bg-blue-400"
+                className="h-auto w-full flex-none rounded-lg p-2 text-4xl"
                 onClick={checkAnswer}>
                 確認
               </Button>
@@ -144,7 +144,7 @@ export default function Use({
         <div className="relative flex-none">
           <div className="flex items-center justify-center">
             <div>
-              <Button className="hover:bg-blue-400" onClick={handleReturn} disabled={index === 0}>
+              <Button onClick={handleReturn} disabled={index === 0}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="32"
@@ -161,10 +161,7 @@ export default function Use({
               </p>
             </div>
             <div>
-              <Button
-                className="hover:bg-blue-400"
-                onClick={handleNext}
-                disabled={index === idList.length - 1}>
+              <Button onClick={handleNext} disabled={index === idList.length - 1}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="32"

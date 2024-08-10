@@ -157,7 +157,7 @@ export default function Create() {
                 <p>以下の入力欄に入力するか、規定のファイル形式のファイルを読み込んで下さい。</p>
                 <Input type="file" accept=".learn-and-check.json" className="hidden" />
                 <div className="flex items-center justify-center">
-                  <Button className="w-40 rounded-lg p-2 hover:bg-blue-400" onClick={upload}>
+                  <Button className="w-40 rounded-lg p-2" onClick={upload}>
                     ファイルを読み込む
                   </Button>
                   <div className="[max-width:50%]" />
@@ -184,14 +184,12 @@ export default function Create() {
                   ))}
                 </div>
                 <div className="">
-                  <Button className="mx-2 w-40 rounded-lg p-2 hover:bg-blue-400" onClick={addCard}>
+                  <Button className="mx-2 w-40 rounded-lg p-2" onClick={addCard}>
                     カードを追加
                   </Button>
                   <Dialog open={isDialogOpen} onOpenChange={() => setIsDialogOpen(!isDialogOpen)}>
                     <DialogTrigger asChild>
-                      <Button className="mx-2 w-40 rounded-lg p-2 hover:bg-blue-400">
-                        インポート
-                      </Button>
+                      <Button className="mx-2 w-40 rounded-lg p-2">インポート</Button>
                     </DialogTrigger>
                     <DialogContent className="flex h-4/5 w-4/5 max-w-none flex-col">
                       <DialogHeader className="flex-none">
@@ -204,18 +202,14 @@ export default function Create() {
                           onChange={e => setImportedCSV(e.target.value)}
                           placeholder={`GoogleスプレッドシートやExcelからインポートすることが出来ます。\n答え\t問題\n答え\t問題...\nの形式で入力してください。`}
                         />
-                        <Button
-                          className="w-40 flex-none rounded-lg p-2 hover:bg-blue-400"
-                          onClick={importFromCSV}>
+                        <Button className="w-40 flex-none rounded-lg p-2" onClick={importFromCSV}>
                           インポート
                         </Button>
                       </div>
                     </DialogContent>
                   </Dialog>
                 </div>
-                <Button
-                  className="rounded-lg p-2 hover:bg-blue-400"
-                  onClick={() => setCreateMode("display")}>
+                <Button className="rounded-lg p-2" onClick={() => setCreateMode("display")}>
                   確定
                 </Button>
               </div>
@@ -223,9 +217,7 @@ export default function Create() {
           ) : createMode === "display" ? (
             <section className="flex w-full flex-col items-center gap-3">
               <DataTable columns={columns} data={TableData}></DataTable>
-              <Button
-                className="mx-2 w-40 rounded-lg p-2 hover:bg-blue-400"
-                onClick={() => setCreateMode("edit")}>
+              <Button className="mx-2 w-40 rounded-lg p-2" onClick={() => setCreateMode("edit")}>
                 編集
               </Button>
             </section>
@@ -236,7 +228,7 @@ export default function Create() {
           )}
 
           <div className="flex">
-            <Button className="mx-2 w-40 rounded-lg p-2 hover:bg-blue-400" onClick={download}>
+            <Button className="mx-2 w-40 rounded-lg p-2" onClick={download}>
               ファイルとして保存
             </Button>
             <VocabularyBook

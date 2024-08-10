@@ -80,7 +80,6 @@ export default function Card({
         }}
       />
       <Button
-        className=" hover:bg-blue-400"
         onClick={() =>
           setFileData(prev => {
             return {
